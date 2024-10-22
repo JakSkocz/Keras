@@ -28,10 +28,16 @@ num_classes = y_test.shape[1]
 model = Sequential()
 
 # Dodanie pierwszej warstwy gęstej z większą liczbą neuronów
-model.add(Dense(256, input_dim=num_pixels, activation='relu'))
+model.add(Dense(128, input_dim=num_pixels, activation='relu'))
 model.add(Dropout(0.3))
 # Dodanie drugiej warstwy gęstej
-model.add(Dense(128, activation='relu'))
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.3))
+# Dodanie trzeciej warstwy gęstej
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.3))
+# Dodanie czwartej warstwy gęstej
+model.add(Dense(32, activation='relu'))
 model.add(Dropout(0.3))
 # Dodanie warstwy wyjściowej
 model.add(Dense(num_classes, kernel_initializer='normal', activation='softmax'))
@@ -40,17 +46,17 @@ model.add(Dense(num_classes, kernel_initializer='normal', activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Uczenie modelu danymi
-history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=100, batch_size=200, verbose=1)
+history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=30, batch_size=200, verbose=1)
 
 # Testowanie modelu
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Baseline Error: %.2f%%" % (100 - scores[1] * 100))
 
 # Zapis modelu do pliku
-model.save('my_model100.keras')  # Zapisuje cały model w formacie Keras
+model.save('my_model30.keras')  # Zapisuje cały model w formacie Keras
 
 # Odczyt modelu z pliku
-loaded_model = load_model('my_model100.keras')  # Ładowanie modelu z formatu Keras
+loaded_model = load_model('my_model30.keras')  # Ładowanie modelu z formatu Keras
 
 # Testowanie załadowanego modelu
 loaded_scores = loaded_model.evaluate(X_test, y_test, verbose=0)

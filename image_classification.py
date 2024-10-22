@@ -4,7 +4,7 @@ from keras.api.models import load_model
 from keras.api.preprocessing.image import load_img, img_to_array
 
 # Ładowanie wytrenowanego modelu
-model = load_model('my_model100.keras')
+model = load_model('my_model30.keras')
 
 
 def classify_image(image_path):
@@ -22,7 +22,7 @@ def classify_image(image_path):
 
 
 # Ścieżka do obrazu
-image_path = r'E:\marcel.furs\Pictures\mnist6.png'
+image_path = r'mnist1.png'
 
 predicted_class = classify_image(image_path)
 print(f'Predykowana klasa: {predicted_class}')

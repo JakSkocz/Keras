@@ -63,7 +63,7 @@ def predict(image: QImage, model):
 
 def get_model():
     try:
-        model = load_model('my_model100.keras')
+        model = load_model('my_model30.keras')
         print("Model loaded successfully")
         return model
     except Exception as e:
